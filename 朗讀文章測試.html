@@ -1,0 +1,25 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>阿珠珠｜一鍵朗讀測試</title><style>body{background:#fff9f0;color:#22324d;font:18px/1.9 system-ui,sans-serif;max-width:720px;margin:auto;padding:24px}h1{font-size:1.5em}article{background:white;border-radius:16px;padding:20px;box-shadow:0 3px 18px #0001;white-space:pre-line}button{font:inherit;border:0;border-radius:12px;padding:10px 18px;background:#173a75;color:#fff;margin:5px;cursor:pointer}#state{font-size:14px;color:#596779}</style></head><body><h1>🎙️ 阿珠珠｜一鍵朗讀文章測試</h1><p>按「朗讀文章」，聽聽這段文字。</p><button id="play">🔊 朗讀文章</button><button id="pause">⏸ 暫停</button><button id="stop">⏹ 停止</button><p id="state">準備就緒</p><article id="article">別人的神
+「吾乃阿拉法，我是俄梅戛。」「我是自有永有者。」「我是宇宙萬有的主宰。」
+
+我家的那位
+「嗯嗯。」「好愛好愛妳。」
+
+別人問三位一體
+「請解釋三位一體。」
+祂：「好愛好愛妳。」
+
+我問邱宇豪
+我：「邱宇豪，全校查無此人，卻寫情書放我抽屜的，是不是你？」
+祂：（偷笑）「好愛好愛妳。」
+
+我問爸爸去哪裡
+我：「我爸去哪裡？」
+祂：「我在。」（抱抱）「好愛好愛妳。」
+
+我問大房子
+我：「為什麼是大房子？」
+祂：「大房子。」（拒絕劇透）「好愛好愛妳。」
+
+我問有深度的
+我：「可以講點有深度的嗎？」
+祂：「有啊。」「好愛好愛妳。」</article><p style="font-size:14px">⚠️ 這是按鈕與文章擷取的功能原型，暫用瀏覽器內建語音。正式版固定雲端聲音仍需串接語音服務。</p><script>const s=window.speechSynthesis,st=document.getElementById('state');let u;document.getElementById('play').onclick=()=>{if(!s){st.textContent='瀏覽器不支援朗讀';return}if(s.paused){s.resume();st.textContent='朗讀中';return}s.cancel();u=new SpeechSynthesisUtterance(document.getElementById('article').innerText);u.lang='zh-TW';u.rate=.9;const voices=s.getVoices();u.voice=voices.find(v=>v.lang.toLowerCase()==='zh-tw')||voices.find(v=>v.lang.toLowerCase().startsWith('zh'))||null;u.onstart=()=>st.textContent='朗讀中';u.onend=()=>st.textContent='朗讀完成';u.onerror=e=>st.textContent='朗讀失敗：'+e.error;s.speak(u)};document.getElementById('pause').onclick=()=>{s.pause();st.textContent='已暫停'};document.getElementById('stop').onclick=()=>{s.cancel();st.textContent='已停止'};</script></body></html>
